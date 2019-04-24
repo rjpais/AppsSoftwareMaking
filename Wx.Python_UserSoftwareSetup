@@ -1,0 +1,114 @@
+%%%%
+
+This code was written for the Explanation of Displaying
+objects such as Buttons, Statics Text, Text Boxes with different designs
+for Wx.Python for designing User Interface Software.
+
+%%%%
+'''
+
+import wx                                                                                                               ### A package to use wx.Python functions in the package
+
+app = wx.App()                                                                                                          ### Use the fucntion in wx.Python to generate a platform to place frames and panels
+
+Setupframe = wx.Frame(parents =None, id =-1, title = "Title header of Frame Window")                                    ### Uses wx.Frame function in package to generate a frame variable. This variable can be passed variables such as its id (-1) means changes to a free id number, title
+'''
+Currently an Empty Frame, so we need to add a Panel to sit on top this frame
+to allow us to add in Buttons and Display Options.
+'''
+panel = wx.Panel(Setupframe, size =(number (x-value), number (y-value)))                                                ### Panel sits on top of the frame, notice the change in color from the frame. Size allows to specify the size of the panel
+panel.Move(number, number)                                                                                              ### Place the display where it most suits you , Better to use panel.Center()
+
+Button = wx.Button(panel, label= "Label to Sit inside Button", size = (number (x-value), number (y-value)))             ### This generates a button assigned a variable name Button. It can be passed variables like size, labels etc.
+Button.Bind( wx.EVT_BUTTON, function made (e.g. open()) )                                                               ### Build in function in wx.Python (wx.EVT_BUTTON) that binds a button to a function of choice attached with an event  e.g. def open(event): would be (wx.EVT_BUTTON, self.open())
+
+TextwrittenintoPanel = wx.StaticText( panel, id = -1, label = "This is an example of static text",                      ### This generates a statictext that is wriiten into the panel using what is wriiten in label. Size is changeable also.
+                                    size = number (x-value), number (y-value), align = wx.ALIGN_CENTER,wx.ALIGN_RIGHT)  ### can align where it will display in the rectangle.
+
+ALterColoursofText = wx.StaticText( panel, id = -1, label = "Static Text With Changed Colors",                          ### This Word color and background color was changed by design
+                                   size =number (x-value), number (y-value))
+ALterColoursofText.SetForegroundColour('color')                                                                         ### Changed word color
+ALterColoursofText.SetBackgroundColour('color')                                                                         ### Changed background color of text rectangle
+
+str = "PRINT A STRING ON THE PANEL"                                                                                     ### can how a string variable and assign it within a statictext
+
+text = wx.StaticText(panel, id = -1, str, (number (x-value), number (y-value)))                                         ### uses the variable string
+font = wx.Font(size, fontfamily, fontstyle, font weight)                                                                ### build in function to generatae a font (size of font, )
+text.SetFont(font)                                                                                                      ### assigns the font variable to the statictext variable text
+
+wx.StaticText(panel, id = -1, "Your text\ncan be split\n" "over multiple lines\n\neven blank ones",                     ### can split where you want with \n.... \n\n is a double space
+              size = (number (x-value), number (y-value)))
+wx.StaticText(panel, id = -1, "Multi-line text\ncan also\n""be right aligned\n\neven with a blank",                     ### also align it to the right
+              size = (number (x-value), number (y-value)), style=wx.ALIGN_RIGHT)
+
+menuBar = wx.MenuBar()                                                                                                  ### Generates the build in function MenuBar from wx.Python
+
+fileButton = wx.Menu()                                                                                                  ### Creates a menu variable called filebutton
+editButton = wx.Menu()                                                                                                  ### Creates a menu variable called editbutton
+importItem = wx.Menu()                                                                                                  ### Creates a menu variable called Importitem
+
+exitItem = fileButton.Append(Id =wx.ID_EXIT, label = 'Exit', status = 'ststus msg....')                                 ### In the filebutton menu, he placed an exit label that uses wx.python command wx.ID_EXIT to exit
+menuBar.Append(fileButton, label = 'LABEL')                                                                             ### Placed menu variable filebutton with lable File into menubar
+menuBar.Append(editButton, label = 'LABEL')                                                                             ### Placed menu variable editbutton with lable Edit into menubar
+
+SetMenuBar(menuBar)                                                                                                     ### Places menubar on panel usingn build in command
+Bind(event = wx.EVT_MENU, function =(e.g def Quit), variable_button = exitItem)                                         ### Can bind the a function (def Quit) to menu button exitItem
+
+wx.TextCtrl(panel, pos= (number (x-value), number (y-value)), size= (number (x-value), number (y-value)))               ### Build in wx.python command to generate a text box where individuals can type text into
+Setupframe.SetTitle('TITLE OF FRAME')                                                                                   ### Command to set title of frame
+
+nameBox = wx.TextEntryDialog(None, label = 'Static text', Title = 'StaticText',Valueplacedinbox (GetValue)='Label')     ### Causes a box to open asking question before opening widget
+if nameBox.ShowModal() ==wx.ID_OK:                                                                                      ### wx.Python command ShowModal() needed to generate Dialog box with an if statment
+    userName = nameBox.GetValue()                                                                                       ### creates a variable and gets the vlaue from dialog box placed in by user
+
+yesNoBox = wx.MessageDialog(None, label = 'Static Text', Title ='Static Text', Event = wx.YES_NO)                       ### creates a message dialog and creates the event option Yes or No
+yesNoAnswer = yesNoBox.ShowModal()                                                                                      ### generates the MessageDialog box
+yesNoBox.Destroy()                                                                                                      ### Destroy the messagebox
+
+if yesNoAnswer == wx.ID_NO:                                                                                             ### Provides a new input if you click no
+    username = 'Why'                                                                                                    ### Sets the username to what you want
+
+chooseOneBox = wx.SingleChoiceDialog(parent = None, Question = 'What is your favorite color?',                          ### Creates a list of strings to choose
+                                    Title ='Color Question',
+                                    Options to choose from list = ['Green', 'Red', 'Blue', 'Yellow'])
+
+if chooseOneBox.ShowModal() == wx.ID_OK:                                                                                ### Generates the Choice dialog box
+    favColor = chooseOneBox.GetStringSelection()                                                                        ### puts choice into variable favColor
+
+self.SetTitle('Welcome '+userName)                                                                                      ### Sets title with username put in
+
+
+wildcard = "Python source (*.py)|*.py|" \"All files (*.*)|*.*"                                                          ### Creates a variable to look for extensions with .py
+
+dlg = wx.DirDialog(self, title = "Choose a directory:",                                                                 ### built in function of wx.Python to open the file directory
+                   style = wx.DD_DEFAULT_STYLE
+                  )
+if dlg.ShowModal() == wx.ID_OK:                                                                                         ### Generates the directory, if they click Id.ok
+    print ("You Choice %s" %dlg.GetPath())                                                                              ### it will print the path of the file
+dlg.Destroy()                                                                                                           ### destroys the dialog box
+#===============================================================================================================================================================================
+dlg = wx.FileDialog(self, message = "Choose a file", defaultDir=self.currentDirectory,                                  ### Generates filedialog
+                    defaultFile="",
+                    wildcard=wildcard,                                                                                  ### Uses the variable to look for ending with .py
+                    style = wx.FD_OPEN | wx.FD_MULTIPLE | wx.FD_CHANGE_DIR
+                    )
+if dlg.ShowModal() == wx.ID_OK:                                                                                         ### generates the filedialog and if ok
+    paths = dlg.GetPaths()                                                                                              ### prints the path
+    print ("String statement")
+    for path in paths:
+        print (path)
+dlg.Destroy()
+
+
+
+Setupframe.show()                                                                                                       ### Displays the frame you generated
+app.MainLoop()                                                                                                          ### Runs the wx.App package
+
+'''
+This is used to explain the uses and functionality of wx.Python for generating different cases of user Interface software.
+Some code was written just for explaination purposes and would not run in a console if executed.
+
+Most user interface software is written with Python classes to transfer attributes of panel and frames more easily and I
+highly recommend do so!
+Classes was excluded so the reader can first understand commands used in wx.Python in a typical python code that executes code line by line.
+'''
